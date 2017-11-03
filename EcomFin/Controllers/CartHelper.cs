@@ -34,6 +34,21 @@ namespace EcomFin.Controllers {
             Cart.Content.Remove(p);
         }
 
+        public void Clear() {
+            Cart.Content = new Dictionary<int, int>();
+        }
+
+        public Dictionary<int, int> GetProducts() {
+            return Cart.Content;
+        }
+
+        public int ParticularItemCount(int id) {
+            if (Cart.Content.ContainsKey(id))
+                return Cart.Content[id];
+            else
+                return 0;
+        }
+
         public void AddProduct(int p) {
             if (Cart.Content.ContainsKey(p))
                 Cart.Content[p]++;

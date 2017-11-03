@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=17.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.17.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -95,6 +99,7 @@
     <Content Include="Views\Admin\CategoriesAdd.aspx" />
     <Content Include="Views\Admin\CategoriesEdit.aspx" />
     <Content Include="Views\Admin\ProductsAdd.aspx" />
+    <Content Include="Views\Admin\ProductsEdit.aspx" />
     <Content Include="Views\Masters\Admin.Master" />
     <Content Include="Views\Masters\Dashboard.master" />
     <EntityDeploy Include="ModelMain.edmx">
@@ -105,6 +110,10 @@
       <DependentUpon>ModelMain.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Masters\Store.Master" />
+    <Content Include="Views\Store\Checkout.aspx" />
+    <Content Include="Views\Store\Logout.aspx" />
+    <Content Include="Views\Store\Register.aspx" />
+    <Content Include="Views\Store\Store.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,7 +154,9 @@
     <Compile Include="Controllers\CartHelper.cs" />
     <Compile Include="Controllers\Categories.cs" />
     <Compile Include="Controllers\ConfigurationHelper.cs" />
+    <Compile Include="Controllers\OrderHelper.cs" />
     <Compile Include="Controllers\Products.cs" />
+    <Compile Include="Controllers\UserHelper.cs" />
     <Compile Include="Views\Admin\AttributesEdit.aspx.cs">
       <DependentUpon>AttributesEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,6 +191,13 @@
     </Compile>
     <Compile Include="Views\Admin\ProductsAdd.aspx.designer.cs">
       <DependentUpon>ProductsAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ProductsEdit.aspx.cs">
+      <DependentUpon>ProductsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ProductsEdit.aspx.designer.cs">
+      <DependentUpon>ProductsEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Masters\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
@@ -278,6 +296,13 @@
     <Compile Include="Views\Masters\Store.Master.designer.cs">
       <DependentUpon>Store.Master</DependentUpon>
     </Compile>
+    <Compile Include="Views\Store\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Store\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Store\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -285,12 +310,33 @@
     <Compile Include="Views\Store\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Store\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Store\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Store\Product.aspx.cs">
       <DependentUpon>Product.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Store\Product.aspx.designer.cs">
       <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Store\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Store\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Store\Store.Master.cs">
+      <DependentUpon>Store.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Store\Store.Master.designer.cs">
+      <DependentUpon>Store.Master</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

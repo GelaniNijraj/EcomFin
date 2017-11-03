@@ -10,7 +10,7 @@
 namespace EcomFin.Views.Store {
     
     
-    public partial class Index {
+    public partial class Checkout {
         
         /// <summary>
         /// RepeaterProducts control.
@@ -22,21 +22,21 @@ namespace EcomFin.Views.Store {
         protected global::System.Web.UI.WebControls.Repeater RepeaterProducts;
         
         /// <summary>
-        /// ObjectDataSourceProducts control.
+        /// ButtonPlaceOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProducts;
+        protected global::System.Web.UI.WebControls.Button ButtonPlaceOrder;
         
         /// <summary>
-        /// ObjectDataSourceProductsCategory control.
+        /// ButtonClearCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductsCategory;
+        protected global::System.Web.UI.WebControls.Button ButtonClearCart;
     }
 }

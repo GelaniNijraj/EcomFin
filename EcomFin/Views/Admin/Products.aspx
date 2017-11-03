@@ -19,6 +19,11 @@
                 <asp:BoundField DataField="Category1.Name" HeaderText="Category" SortExpression="Category" />
                 <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                 <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <a href='products/edit/<%# Eval("Id") %>'>Edit</a>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
         <asp:ObjectDataSource 

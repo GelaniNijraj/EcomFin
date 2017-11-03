@@ -11,6 +11,7 @@ namespace EcomFin {
 
             routes.MapPageRoute("AdminProducts", "admin/products", "~/Views/Admin/Products.aspx");
             routes.MapPageRoute("AdminProductsAdd", "admin/products/new", "~/Views/Admin/ProductsAdd.aspx");
+            routes.MapPageRoute("AdminProductsEdit", "admin/products/edit/{id}", "~/Views/Admin/ProductsEdit.aspx");
 
             routes.MapPageRoute("AdminOrders", "admin/orders", "~/Views/Admin/Orders.aspx");
 
@@ -27,6 +28,9 @@ namespace EcomFin {
             routes.MapPageRoute("StoreCategories", "category/{category}", "~/Views/Store/Index.aspx");
             routes.MapPageRoute("StoreProduct", "product/{id}", "~/Views/Store/Product.aspx");
             routes.MapPageRoute("StoreSearch", "search/{query}", "~/Views/Store/Search.aspx");
+            routes.MapPageRoute("StoreCheckout", "checkout", "~/Views/Store/Checkout.aspx");
+            routes.MapPageRoute("StoreRegister", "register", "~/Views/Store/Register.aspx");
+            routes.MapPageRoute("StoreLogout", "logout", "~/Views/Store/Logout.aspx");
             return routes;
         }
     }

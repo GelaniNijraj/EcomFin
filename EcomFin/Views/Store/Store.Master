@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Store.master.cs" Inherits="EcomFin.Views.Store.Store" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link type="text/css" rel="stylesheet" href="~/App_Themes/store.css" />
+    <link type="text/css" rel="stylesheet" href="~/App_Themes/normalize.css" />
+    <link type="text/css" rel="stylesheet" href="~/App_Themes/milligram.css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <div class="container">
+            <div class="row-center" style="height: 200px; background: url('/Images/doodles.png');">
+                <div class="column">
+                    <h1 style="text-align: center; padding-top: 50px;"><%=cfg["SiteTitle"] %></h1>
+                    <h4 style="text-align: center;"><%=cfg["HeaderText"]%></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column column-30">
+                    <div class="row">
+                        <div class="column column-50">
+                            <asp:TextBox ID="TextBoxSearch" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="column column-50">
+                            <asp:Button ID="ButtonSearch" runat="server" Text="Search" />
+                        </div>
+                    </div>
+                </div>
+                <div class="column column-70" id="menubar">
+                    <ul>
+                        <li><a href="/checkout">Checkout (<%= ch.ItemCount() %> Items)</a></li>
+                        <% if (!uh.IsLoggedIn(Session)) { %>
+                            <li><a href="/register">Login/Register</a></li>
+                        <% } else { %>
+                            <li><a href="/logout">Log Out</a></li>
+                        <% } %>
+                        <li><a href="/">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="column column-25">
+                    <h4>Categories</h4>
+                    <a href="/">All (<%= products.GetAll().Count %>)</a><br />
+                    <% foreach (var c in categories.GetAll()) { %>
+                        <a href="/category/<%= c.Id %>"> <%= c.Name %>(<%= c.Products.Count %>)</a><br />
+                    <% } %>
+                </div>
+                <div class="column column-75">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

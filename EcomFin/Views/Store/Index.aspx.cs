@@ -20,13 +20,15 @@ namespace EcomFin.Views.Store {
             categories = new Categories();
             products = new Products();
             ch = new CartHelper(Session["cart"]);
+            if (Page.RouteData.Values["category"] == null) {
+                RepeaterProducts.DataSource = ObjectDataSourceProducts;
+            } else {
+                RepeaterProducts.DataSource = ObjectDataSourceProductsCategory;
+            }
             if (!IsPostBack) {
-                if(Page.RouteData.Values["category"] == null) {
-                    RepeaterProducts.DataSource = ObjectDataSourceProducts;
-                }else {
-                    RepeaterProducts.DataSource = ObjectDataSourceProductsCategory;
-                }
                 Page.DataBind();
+            }else {
+
             }
         }
 

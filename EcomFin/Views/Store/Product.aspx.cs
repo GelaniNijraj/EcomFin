@@ -24,5 +24,20 @@ namespace EcomFin.Views.Store {
             }
             Page.DataBind();
         }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public AjaxControlToolkit.Slide[] GetImages() {
+            /*
+            AjaxControlToolkit.Slide[] slides = new AjaxControlToolkit.Slide[product.ProductImages.Count];
+            for(int i = 0; i < product.ProductImages.Count; i++) {
+                slides[i] = new AjaxControlToolkit.Slide("/Images/Products/" + product.ProductImages.ToList()[i], product.Name, product.Name);
+            }
+            */
+            AjaxControlToolkit.Slide[] slides = new AjaxControlToolkit.Slide[2];
+            slides[0] = new AjaxControlToolkit.Slide("/Images/placeholder.png", "", "");
+            slides[1] = new AjaxControlToolkit.Slide("/Images/placeholder.png", "", "");
+            return slides;
+        }
     }
 }
