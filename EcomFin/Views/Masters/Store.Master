@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Store.master.cs" Inherits="EcomFin.Views.Masters.Store" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link type="text/css" rel="stylesheet" href="~/App_Themes/store.css" />
+    <link type="text/css" rel="stylesheet" href="~/App_Themes/normalize.css" />
+    <link type="text/css" rel="stylesheet" href="~/App_Themes/milligram.css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <div class="container">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+</body>
+</html>

@@ -1,0 +1,710 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ecomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer" Type="int" />
+          <Property Name="LineOne" Type="nvarchar" MaxLength="128" />
+          <Property Name="Street" Type="nvarchar" MaxLength="128" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZIP" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="128" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="AttributeNames">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AttributeValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Attribute" Type="int" />
+          <Property Name="Value" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Configurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="128" />
+          <Property Name="Value" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="Password" Type="nvarchar" MaxLength="129" />
+          <Property Name="RegisteredOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HasAttribute">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Attribute" />
+          </Key>
+          <Property Name="Product" Type="int" Nullable="false" />
+          <Property Name="Attribute" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItems">
+          <Key>
+            <PropertyRef Name="Order" />
+            <PropertyRef Name="Product" />
+          </Key>
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="Product" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer" Type="int" />
+          <Property Name="PlacedOn" Type="datetime" />
+          <Property Name="StatusCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeliverTo" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="URL" />
+          </Key>
+          <Property Name="Product" Type="int" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="MeasuredIn" Type="nvarchar" MaxLength="64" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <Association Name="FK_Addresses_ToCustomers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeValues_ToAttributeNames">
+          <End Role="AttributeNames" Type="Self.AttributeNames" Multiplicity="0..1" />
+          <End Role="AttributeValues" Type="Self.AttributeValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeNames">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttributeValues">
+              <PropertyRef Name="Attribute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HasAttribute_ToAttributeValues">
+          <End Role="AttributeValues" Type="Self.AttributeValues" Multiplicity="1" />
+          <End Role="HasAttribute" Type="Self.HasAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeValues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HasAttribute">
+              <PropertyRef Name="Attribute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HasAttribute_ToProducts">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="HasAttribute" Type="Self.HasAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HasAttribute">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_ToOrders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_ToProducts">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ToAddresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="DeliverTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ToCustomers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImages_ToProducts">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ToCategories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecomModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttributeNames" EntityType="Self.AttributeNames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttributeValues" EntityType="Self.AttributeValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HasAttribute" EntityType="Self.HasAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Addresses_ToCustomers" Association="Self.FK_Addresses_ToCustomers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeValues_ToAttributeNames" Association="Self.FK_AttributeValues_ToAttributeNames">
+            <End Role="AttributeNames" EntitySet="AttributeNames" />
+            <End Role="AttributeValues" EntitySet="AttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HasAttribute_ToAttributeValues" Association="Self.FK_HasAttribute_ToAttributeValues">
+            <End Role="AttributeValues" EntitySet="AttributeValues" />
+            <End Role="HasAttribute" EntitySet="HasAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HasAttribute_ToProducts" Association="Self.FK_HasAttribute_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="HasAttribute" EntitySet="HasAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_ToOrders" Association="Self.FK_OrderItems_ToOrders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_ToProducts" Association="Self.FK_OrderItems_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ToAddresses" Association="Self.FK_Orders_ToAddresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ToCustomers" Association="Self.FK_Orders_ToCustomers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImages_ToProducts" Association="Self.FK_ProductImages_ToProducts">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ToCategories" Association="Self.FK_Products_ToCategories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ecomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="ecomModel.Address" />
+          <EntitySet Name="Admins" EntityType="ecomModel.Admin" />
+          <EntitySet Name="AttributeNames" EntityType="ecomModel.AttributeName" />
+          <EntitySet Name="AttributeValues" EntityType="ecomModel.AttributeValue" />
+          <EntitySet Name="Categories" EntityType="ecomModel.Category" />
+          <EntitySet Name="Configurations" EntityType="ecomModel.Configuration" />
+          <EntitySet Name="Customers" EntityType="ecomModel.Customer" />
+          <EntitySet Name="OrderItems" EntityType="ecomModel.OrderItem" />
+          <EntitySet Name="Orders" EntityType="ecomModel.Order" />
+          <EntitySet Name="ProductImages" EntityType="ecomModel.ProductImage" />
+          <EntitySet Name="Products" EntityType="ecomModel.Product" />
+          <AssociationSet Name="FK_Addresses_ToCustomers" Association="ecomModel.FK_Addresses_ToCustomers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ToAddresses" Association="ecomModel.FK_Orders_ToAddresses">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeValues_ToAttributeNames" Association="ecomModel.FK_AttributeValues_ToAttributeNames">
+            <End Role="AttributeName" EntitySet="AttributeNames" />
+            <End Role="AttributeValue" EntitySet="AttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ToCategories" Association="ecomModel.FK_Products_ToCategories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ToCustomers" Association="ecomModel.FK_Orders_ToCustomers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_ToOrders" Association="ecomModel.FK_OrderItems_ToOrders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_ToProducts" Association="ecomModel.FK_OrderItems_ToProducts">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImages_ToProducts" Association="ecomModel.FK_ProductImages_ToProducts">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="HasAttribute" Association="ecomModel.HasAttribute">
+            <End Role="AttributeValue" EntitySet="AttributeValues" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer" Type="Int32" />
+          <Property Name="LineOne" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZIP" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer1" Relationship="ecomModel.FK_Addresses_ToCustomers" FromRole="Address" ToRole="Customer" />
+          <NavigationProperty Name="Orders" Relationship="ecomModel.FK_Orders_ToAddresses" FromRole="Address" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AttributeName">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttributeValues" Relationship="ecomModel.FK_AttributeValues_ToAttributeNames" FromRole="AttributeName" ToRole="AttributeValue" />
+        </EntityType>
+        <EntityType Name="AttributeValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Attribute" Type="Int32" />
+          <Property Name="Value" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttributeName" Relationship="ecomModel.FK_AttributeValues_ToAttributeNames" FromRole="AttributeValue" ToRole="AttributeName" />
+          <NavigationProperty Name="Products" Relationship="ecomModel.HasAttribute" FromRole="AttributeValue" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="ecomModel.FK_Products_ToCategories" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Configuration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="129" FixedLength="false" Unicode="true" />
+          <Property Name="RegisteredOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Addresses" Relationship="ecomModel.FK_Addresses_ToCustomers" FromRole="Customer" ToRole="Address" />
+          <NavigationProperty Name="Orders" Relationship="ecomModel.FK_Orders_ToCustomers" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Order" />
+            <PropertyRef Name="Product" />
+          </Key>
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Order1" Relationship="ecomModel.FK_OrderItems_ToOrders" FromRole="OrderItem" ToRole="Order" />
+          <NavigationProperty Name="Product1" Relationship="ecomModel.FK_OrderItems_ToProducts" FromRole="OrderItem" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer" Type="Int32" />
+          <Property Name="PlacedOn" Type="DateTime" Precision="3" />
+          <Property Name="StatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeliverTo" Type="Int32" />
+          <NavigationProperty Name="Address" Relationship="ecomModel.FK_Orders_ToAddresses" FromRole="Order" ToRole="Address" />
+          <NavigationProperty Name="Customer1" Relationship="ecomModel.FK_Orders_ToCustomers" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderItems" Relationship="ecomModel.FK_OrderItems_ToOrders" FromRole="Order" ToRole="OrderItem" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="URL" />
+          </Key>
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product1" Relationship="ecomModel.FK_ProductImages_ToProducts" FromRole="ProductImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="MeasuredIn" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Category1" Relationship="ecomModel.FK_Products_ToCategories" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderItems" Relationship="ecomModel.FK_OrderItems_ToProducts" FromRole="Product" ToRole="OrderItem" />
+          <NavigationProperty Name="ProductImages" Relationship="ecomModel.FK_ProductImages_ToProducts" FromRole="Product" ToRole="ProductImage" />
+          <NavigationProperty Name="AttributeValues" Relationship="ecomModel.HasAttribute" FromRole="Product" ToRole="AttributeValue" />
+        </EntityType>
+        <Association Name="FK_Addresses_ToCustomers">
+          <End Type="ecomModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="ecomModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ToAddresses">
+          <End Type="ecomModel.Address" Role="Address" Multiplicity="0..1" />
+          <End Type="ecomModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="DeliverTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeValues_ToAttributeNames">
+          <End Type="ecomModel.AttributeName" Role="AttributeName" Multiplicity="0..1" />
+          <End Type="ecomModel.AttributeValue" Role="AttributeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeName">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttributeValue">
+              <PropertyRef Name="Attribute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ToCategories">
+          <End Type="ecomModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="ecomModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ToCustomers">
+          <End Type="ecomModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="ecomModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_ToOrders">
+          <End Type="ecomModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ecomModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_ToProducts">
+          <End Type="ecomModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ecomModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImages_ToProducts">
+          <End Type="ecomModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ecomModel.ProductImage" Role="ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HasAttribute">
+          <End Type="ecomModel.AttributeValue" Role="AttributeValue" Multiplicity="*" />
+          <End Type="ecomModel.Product" Role="Product" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecomModelStoreContainer" CdmEntityContainer="ecomEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ecomModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="LineOne" ColumnName="LineOne" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="ecomModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeNames">
+            <EntityTypeMapping TypeName="ecomModel.AttributeName">
+              <MappingFragment StoreEntitySet="AttributeNames">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeValues">
+            <EntityTypeMapping TypeName="ecomModel.AttributeValue">
+              <MappingFragment StoreEntitySet="AttributeValues">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ecomModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="ecomModel.Configuration">
+              <MappingFragment StoreEntitySet="Configurations">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ecomModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="RegisteredOn" ColumnName="RegisteredOn" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="ecomModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ecomModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="DeliverTo" ColumnName="DeliverTo" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="PlacedOn" ColumnName="PlacedOn" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="ecomModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImages">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ecomModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MeasuredIn" ColumnName="MeasuredIn" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HasAttribute" TypeName="ecomModel.HasAttribute" StoreEntitySet="HasAttribute">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="Product" />
+            </EndProperty>
+            <EndProperty Name="AttributeValue">
+              <ScalarProperty Name="Id" ColumnName="Attribute" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

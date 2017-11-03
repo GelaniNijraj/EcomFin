@@ -1,0 +1,19 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Masters/Admin.Master" AutoEventWireup="true" CodeBehind="Dashboard.master.cs" Inherits="EcomFin.Dashboard" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row">
+            <div class="column column-20" id="sidebar">
+                 <ul>
+                     <li><a href="/admin/products">Products</a></li>
+                     <li><a href="/admin/categories">Categories</a></li>
+                     <li><a href="/admin/attributes">Attributes</a></li>
+                     <li><a href="/admin/settings">Settings</a></li>
+                 </ul>
+            </div>
+            <div class="column column-80">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+    </div>
+</asp:Content>
