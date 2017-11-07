@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EcomFin.Controllers.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,14 +23,20 @@ namespace EcomFin.Views.Admin {
 
         protected void ButtonSave_Click(object sender, EventArgs e) {
             category.Name = TextBoxName.Text;
-            db.SaveChanges();
-            Response.Redirect("/admin/categories");
+            var validator = new CategoryValidator();
+            var result = validator.Validate(category);
+            if (result.IsValid) {
+                db.SaveChanges();
+                Response.Redirect("/admin/categories");
+            } else {
+                LabelMessage.Text = result.Errors.First().ErrorMessage;
+            }
         }
 
         protected void ButtonRemove_Click(object sender, EventArgs e) {
-            if (category.Products.Count > 0)
+            if (category.Products.Count > 0) {
                 LabelMessage.Text = "Can not remove a category while used by a product";
-            else {
+            } else {
                 db.Categories.Remove(category);
                 db.SaveChanges();
                 Response.Redirect("/admin/categories");

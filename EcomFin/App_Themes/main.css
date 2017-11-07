@@ -1,6 +1,42 @@
 ﻿body {
 }
 
+.hidden > tbody > tr > td:first-child, .hidden > tbody > tr > th:first-child {
+    display: none;
+}
+
+.full-width{
+    width: 100%;
+}
+
+#menubar{
+    height: 50px;
+    background: #232323;
+}
+
+#menubar > ul{
+    list-style: none;
+    float: right;
+    width: 100%;
+}
+
+#menubar > ul > li{
+    float: right;
+    line-height: 50px;
+    color: #FFF;
+}
+
+#menubar > ul > li > a{
+    display: block;
+    line-height: 50px;
+    color: #FFF;
+    padding: 0 10px;
+}
+
+#menubar > ul > li > a:hover{
+    text-decoration: underline;
+}
+
 #sidebar{
     background: #232323;
     height: 100vh;
@@ -10,8 +46,20 @@
     list-style: none;
 }
 
+#sidebar > ul > li{
+    height: 30px;
+}
+
 #sidebar > ul > li > a{
     color: #FFF;
+    display: block;
+    line-height: 30px;
+    padding: 0 10px;
+    transition: 0.2s;
+}
+
+#sidebar > ul > li > a:hover{
+    background: rgba(255, 255, 255, 0.2);
 }
 
 td > input{

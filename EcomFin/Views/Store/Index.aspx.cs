@@ -20,15 +20,34 @@ namespace EcomFin.Views.Store {
             categories = new Categories();
             products = new Products();
             ch = new CartHelper(Session["cart"]);
+            var master = (Store) Master;
+            ObjectDataSourceSearch.SelectParameters.Clear();
+            ObjectDataSourceSearch.SelectParameters.Add(
+                "search",
+                 Session["search"] == null ? "" : Session["search"].ToString()
+            );
+            ObjectDataSourceSearch.SelectParameters.Add(
+                "minprice",
+                 Session["minprice"] == null ? "-1" : Session["minprice"].ToString()
+            );
+            ObjectDataSourceSearch.SelectParameters.Add(
+                "maxprice",
+                 Session["maxprice"] == null ? "-1" : Session["maxprice"].ToString()
+            );
+            ObjectDataSourceSearch.SelectParameters.Add(
+                "category", 
+                Page.RouteData.Values["category"] == null ? "0" : Page.RouteData.Values["category"].ToString()
+            );
+            RepeaterProducts.DataSource = ObjectDataSourceSearch;
+            /*
             if (Page.RouteData.Values["category"] == null) {
                 RepeaterProducts.DataSource = ObjectDataSourceProducts;
             } else {
                 RepeaterProducts.DataSource = ObjectDataSourceProductsCategory;
-            }
+            }*/
             if (!IsPostBack) {
+                RepeaterProducts.DataBind();
                 Page.DataBind();
-            }else {
-
             }
         }
 

@@ -13,13 +13,13 @@ namespace EcomFin.Views.Admin {
     public partial class AttributesEdit {
         
         /// <summary>
-        /// TextBox1 control.
+        /// TextBoxName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxName;
         
         /// <summary>
         /// GridViewValues control.
@@ -38,6 +38,15 @@ namespace EcomFin.Views.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceValues;
+        
+        /// <summary>
+        /// TextBoxValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxValue;
         
         /// <summary>
         /// ButtonAddValue control.

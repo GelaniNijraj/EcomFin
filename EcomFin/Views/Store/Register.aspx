@@ -12,10 +12,11 @@
         </div>
         <div class="column column-50">
             <h3>Register</h3>
-            <label>Name <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></label>
+            <label>Name <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox></label>
             <label>Email <asp:TextBox ID="TextBoxUsername" runat="server"></asp:TextBox></label>
             <label>Password <asp:TextBox ID="TextBoxPassword" TextMode="Password" runat="server"></asp:TextBox></label>
-            <asp:Button ID="ButtonRegister" runat="server" Text="Register" />
+            <asp:Button ID="ButtonRegister" runat="server" Text="Register" OnClick="ButtonRegister_Click" />
+            <asp:Label ID="LabelRegisterMessage" runat="server"></asp:Label>
         </div>
     </div>
 </asp:Content>

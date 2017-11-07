@@ -47,6 +47,7 @@
                 </div>
                 <asp:button ID="ButtonAdd" runat="server" text="ADD" OnClick="ButtonAdd_Click" />
                 <a href="/admin/products"><input type="button" value="DISCARD" /></a>
+                <asp:Label ID="LabelMessage" runat="server" ></asp:Label>
             </div>
         </div>
     </form>

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 
 namespace EcomFin.Controllers {
-    public class Attributes {
+    public class AttributesHelper {
         ecomEntities db = new ecomEntities();
-        public Attributes() {
+        public AttributesHelper() {
             
         }
 
@@ -15,6 +15,12 @@ namespace EcomFin.Controllers {
             var name = new AttributeName();
             name.Name = n;
             db.AttributeNames.Add(name);
+            db.SaveChanges();
+        }
+
+        public void Update(AttributeValue attr) {
+            var val = db.AttributeValues.Where(r => r.Id == attr.Id).First();
+            val.Value = attr.Value;
             db.SaveChanges();
         }
         
@@ -32,7 +38,6 @@ namespace EcomFin.Controllers {
 
         public List<AttributeValue> GetValues(int id) {
             var t = db.AttributeValues.Where(r => r.Attribute == id).ToList();
-            Debug.WriteLine("Length is " + t.Count);
             return t;
         }
 
@@ -43,20 +48,6 @@ namespace EcomFin.Controllers {
             }catch {
                 Debug.WriteLine("Couldn't find attribute with id " + id);
             }
-        }
-
-        public static void UpdateValue(AttributeValue val) {
-            Debug.WriteLine("Type is >> " + val.Id + " >>" + val.Value + "<<");
-
-            /*
-            Debug.WriteLine("Doing update attribute " + Id + " to " + Value);
-            try {
-                var val = db.AttributeValues.Where(r => r.Id == Id).First();
-                val.Value = Value;
-                db.SaveChanges();
-            }catch(Exception e) {
-                Debug.WriteLine("Couldn't update attribute " + Id + " to " + Value);
-            }*/
         }
     }
 }

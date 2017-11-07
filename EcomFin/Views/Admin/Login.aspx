@@ -9,8 +9,9 @@
             <div class="column column-50">
                 <h1>Log-In</h1>
                 <label>Username<asp:TextBox ID="TextBoxUsername" runat="server"></asp:TextBox></label>
-                <label>Password<asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox></label>
-                <asp:Button ID="ButtonLogin" runat="server" Text="Log-In" />
+                <label>Password<asp:TextBox ID="TextBoxPassword" runat="server" TextMode="Password"></asp:TextBox></label>
+                <asp:Button ID="ButtonLogin" runat="server" Text="Log-In" OnClick="ButtonLogin_Click" />
+                <asp:Label ID="LabelMessage" runat="server"></asp:Label>
             </div>
         </div>
     </form>

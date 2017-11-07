@@ -1,6 +1,8 @@
-﻿using EcomFin.Controllers;
+﻿using AjaxControlToolkit;
+using EcomFin.Controllers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +15,13 @@ namespace EcomFin.Views.Store {
         public Products products;
         public CartHelper ch;
         public UserHelper uh;
+        public ecomEntities db = new ecomEntities();
+        public string Search { get; set; }
+        public TextBox SearchBox {
+            get {
+                return TextBoxSearch;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e) {
             cfg = new ConfigurationHelper();
@@ -20,6 +29,22 @@ namespace EcomFin.Views.Store {
             products = new Products();
             uh = new UserHelper(Session);
             ch = new CartHelper(Session["cart"]);
+            TextBoxSearch.Attributes["value"] = Session["search"] == null ? "" : Session["search"].ToString();
+            SliderPrice.Minimum = db.Products.Min(p => (int)p.Price);
+            SliderPrice.Maximum = db.Products.Max(p => (int)p.Price);
+            TextBoxPrice1.Attributes["value"] = Session["minprice"] == null ? SliderPrice.Minimum + "" : Session["minprice"].ToString();
+            TextBoxPrice2.Attributes["value"] = Session["maxprice"] == null ? SliderPrice.Maximum + "" : Session["maxprice"].ToString();
+        }
+        
+        protected void ButtonSearch_Click(object sender, EventArgs e) {
+            Session["search"] = TextBoxSearch.Text;
+            Response.Redirect("/search");
+        }
+
+        protected void ButtonApplyPrice_Click(object sender, EventArgs e) {
+            Session["minprice"] = TextBoxPrice1.Text;
+            Session["maxprice"] = TextBoxPrice2.Text;
+            Response.Redirect("/search");
         }
     }
 }

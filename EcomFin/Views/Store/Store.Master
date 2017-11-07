@@ -21,14 +21,7 @@
             </div>
             <div class="row">
                 <div class="column column-30">
-                    <div class="row">
-                        <div class="column column-50">
-                            <asp:TextBox ID="TextBoxSearch" runat="server"></asp:TextBox>
-                        </div>
-                        <div class="column column-50">
-                            <asp:Button ID="ButtonSearch" runat="server" Text="Search" />
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="column column-70" id="menubar">
                     <ul>
@@ -37,6 +30,7 @@
                             <li><a href="/register">Login/Register</a></li>
                         <% } else { %>
                             <li><a href="/logout">Log Out</a></li>
+                            <li><a href="/settings">Settings</a></li>
                         <% } %>
                         <li><a href="/">Home</a></li>
                     </ul>
@@ -45,15 +39,56 @@
         
             <div class="row">
                 <div class="column column-25">
+                    <h4>Search</h4>
+                    <asp:TextBox ID="TextBoxSearch" runat="server" value='<%# Session["search"] == null ? "" : Session["search"].ToString() %>'></asp:TextBox>
+                    <div class="row">
+                        <div class="column">
+                            <asp:Button ID="ButtonSearch" runat="server" Text="Search" style="float: right;" OnClick="ButtonSearch_Click" />
+                        </div>
+                    </div>
+
+                    <h4>Price Range</h4>
+                    <div class="row" style="height: 50px;">
+                        <div class="column">
+                            <ajaxToolkit:MultiHandleSliderExtender 
+                                ID="SliderPrice"
+                                TargetControlID="TextBoxPrice"
+                                Length="200"
+                                runat="server">
+                                <MultiHandleSliderTargets>
+                                    <ajaxToolkit:MultiHandleSliderTarget ControlID="TextBoxPrice1" />
+                                    <ajaxToolkit:MultiHandleSliderTarget ControlID="TextBoxPrice2" />
+                                </MultiHandleSliderTargets>
+                            </ajaxToolkit:MultiHandleSliderExtender>
+                            <asp:TextBox ID="TextBoxPrice" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column column-50">
+                            <asp:TextBox ID="TextBoxPrice1" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="column column-50">
+                            <asp:TextBox ID="TextBoxPrice2" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <asp:Button ID="ButtonApplyPrice" runat="server" Text="Apply" style="float: right" OnClick="ButtonApplyPrice_Click" />
+                        </div>
+                    </div>
+                    
                     <h4>Categories</h4>
                     <a href="/">All (<%= products.GetAll().Count %>)</a><br />
                     <% foreach (var c in categories.GetAll()) { %>
                         <a href="/category/<%= c.Id %>"> <%= c.Name %>(<%= c.Products.Count %>)</a><br />
                     <% } %>
                 </div>
-                <div class="column column-75">
+                <div class="column column-75" style="min-height: 500px;">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
                 </div>
+            </div>
+            <div class="row">
+                <footer><%= cfg["FooterText"] %></footer>
             </div>
         </div>
     </form>

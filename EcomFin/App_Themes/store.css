@@ -21,3 +21,7 @@
     line-height: 50px;
     padding: 0 10px;
 }
+
+.hidden > tbody > tr > td:first-child, .hidden > tbody > tr > th:first-child {
+    display: none;
+}

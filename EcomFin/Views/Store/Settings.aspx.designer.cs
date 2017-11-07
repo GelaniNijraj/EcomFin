@@ -10,51 +10,51 @@
 namespace EcomFin.Views.Store {
     
     
-    public partial class Product {
+    public partial class Settings {
         
         /// <summary>
-        /// ImageSlideShow control.
+        /// TextBoxEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageSlideShow;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxEmail;
         
         /// <summary>
-        /// ButtonPrevious control.
+        /// ButtonUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPrevious;
+        protected global::System.Web.UI.WebControls.Button ButtonUpdate;
         
         /// <summary>
-        /// LabelImageTitle control.
+        /// TextBoxPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelImageTitle;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPassword;
         
         /// <summary>
-        /// ButtonNext control.
+        /// GridViewAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNext;
+        protected global::System.Web.UI.WebControls.GridView GridViewAddress;
         
         /// <summary>
-        /// SlideShowExtenderProduct control.
+        /// ObjectDataSourceAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.SlideShowExtender SlideShowExtenderProduct;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceAddress;
     }
 }

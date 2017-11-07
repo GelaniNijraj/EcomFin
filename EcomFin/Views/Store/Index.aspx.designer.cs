@@ -22,21 +22,12 @@ namespace EcomFin.Views.Store {
         protected global::System.Web.UI.WebControls.Repeater RepeaterProducts;
         
         /// <summary>
-        /// ObjectDataSourceProducts control.
+        /// ObjectDataSourceSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProducts;
-        
-        /// <summary>
-        /// ObjectDataSourceProductsCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceProductsCategory;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceSearch;
     }
 }

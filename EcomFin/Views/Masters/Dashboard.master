@@ -4,11 +4,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
+        <div class="column" id="menubar">
+            <ul>
+                <li><a href="/admin/logout">Log Out</a></li>
+                <li><a href="/admin/account">Account</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
             <div class="column column-20" id="sidebar">
                  <ul>
                      <li><a href="/admin/products">Products</a></li>
                      <li><a href="/admin/categories">Categories</a></li>
                      <li><a href="/admin/attributes">Attributes</a></li>
+                     <li><a href="/admin/orders">Orders</a></li>
                      <li><a href="/admin/settings">Settings</a></li>
                  </ul>
             </div>

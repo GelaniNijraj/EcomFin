@@ -14,6 +14,10 @@ namespace EcomFin.Controllers {
                 Customer = (Customer) session["user"];
         }
 
+        public int GetId() {
+            return Customer.Id;
+        }
+
         public bool IsLoggedIn(HttpSessionState session) {
             return session["user"] != null;
         }

@@ -1,4 +1,5 @@
 ﻿using EcomFin.Controllers;
+using EcomFin.Controllers.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace EcomFin.Views.Store {
             uh = new UserHelper(Session);
             ch = new CartHelper(Session["cart"]);
             oh = new OrderHelper();
+            if (uh.IsLoggedIn(Session) && DropDownListAddress.Items.Count == 0) {
+                DropDownListAddress.Items.Add(new ListItem("Select an address", "0"));
+                foreach (var a in uh.Customer.Addresses.ToList())
+                    DropDownListAddress.Items.Add(new ListItem(a.LineOne + "," + a.Street + " (" + a.ZIP + ")", a.Id + ""));
+            }
             Page.DataBind();
         }
 
@@ -52,9 +58,35 @@ namespace EcomFin.Views.Store {
 
         protected void ButtonPlaceOrder_Click(object sender, EventArgs e) {
             if (uh.IsLoggedIn(Session)) {
-                oh.PlaceHolder(ch.Cart, uh.Customer);
+                int address = 0;
+                if(DropDownListAddress.SelectedValue == "0") {
+                    var a = new Address();
+                    a.LineOne = TextBoxHome.Text;
+                    a.Street = TextBoxStreet.Text;
+                    a.City = TextBoxCity.Text;
+                    a.State = TextBoxState.Text;
+                    a.Country = TextBoxCountry.Text;
+                    a.ZIP = TextBoxZip.Text;
+                    a.Customer = uh.Customer.Id;
+                    var validator = new AddressValidator();
+                    var result = validator.Validate(a);
+                    if (result.IsValid) {
+                        db.Addresses.Add(a);
+                        db.SaveChanges();
+                        address = a.Id;
+                    } else {
+                        LabelMessageAddress.Text = result.Errors.First().ErrorMessage;
+                        return;
+                    }
+                }else {
+                    address = Int32.Parse(DropDownListAddress.SelectedValue);
+                }
+                oh.PlaceHolder(ch.Cart, uh.Customer, address);
+                ch.Clear();
+                Session["cart"] = ch.Cart;
+                Response.Redirect("/");
             }else {
-                Response.Redirect("/register");
+                Response.Redirect("/register?redirect=checkout");
             }
         }
     }

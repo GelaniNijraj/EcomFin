@@ -10,7 +10,7 @@
                     <a href='/product/<%# Eval("Id") %>'><h3><%# Eval("Name") %></h3></a>
                     <asp:Image ID="Image1" runat="server" ImageUrl='<%# GetImageURL(Eval("ProductImages")) %>' Width="300px" Height="300px" />
                     <div class="row">
-                        <div class="column column-40">₹ <%# Eval("Price") %></div>
+                        <div class="column column-40">₹ <%# Eval("Price", "{0:0.00}") %></div>
                         <div class="column column-60">
                             <asp:Button CssClass="float-right" ID="Button1" runat="server" Text="Add To Cart" CommandName="ProductId" CommandArgument='<%# Eval("Id") %>' />
                         </div>
@@ -20,10 +20,5 @@
             </ItemTemplate>
         </asp:Repeater>
     </div>
-    <asp:ObjectDataSource ID="ObjectDataSourceProducts" runat="server" SelectMethod="GetAll" TypeName="EcomFin.Controllers.Products"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="ObjectDataSourceProductsCategory" runat="server" SelectMethod="GetAllInCategory" TypeName="EcomFin.Controllers.Products">
-    <SelectParameters>
-        <asp:RouteParameter DefaultValue="0" Name="c" RouteKey="category" Type="Int32" />
-    </SelectParameters>
-    </asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ObjectDataSourceSearch" runat="server" SelectMethod="GetAllSearch" TypeName="EcomFin.Controllers.Products" />
 </asp:Content>

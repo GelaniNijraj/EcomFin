@@ -55,6 +55,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.7.2.1\lib\net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -94,10 +98,14 @@
       <LastGenOutput>ModelMain.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
+    <Content Include="Views\Admin\Account.aspx" />
     <Content Include="Views\Admin\AttributesEdit.aspx" />
     <Content Include="Views\Admin\Categories.aspx" />
     <Content Include="Views\Admin\CategoriesAdd.aspx" />
     <Content Include="Views\Admin\CategoriesEdit.aspx" />
+    <Content Include="Views\Admin\Logout.aspx" />
+    <Content Include="Views\Admin\Orders.aspx" />
+    <Content Include="Views\Admin\OrdersEdit.aspx" />
     <Content Include="Views\Admin\ProductsAdd.aspx" />
     <Content Include="Views\Admin\ProductsEdit.aspx" />
     <Content Include="Views\Masters\Admin.Master" />
@@ -113,6 +121,7 @@
     <Content Include="Views\Store\Checkout.aspx" />
     <Content Include="Views\Store\Logout.aspx" />
     <Content Include="Views\Store\Register.aspx" />
+    <Content Include="Views\Store\Settings.aspx" />
     <Content Include="Views\Store\Store.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -150,13 +159,26 @@
     <Compile Include="AttributeValue.cs">
       <DependentUpon>ModelMain.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Attributes.cs" />
+    <Compile Include="Controllers\AddressHelper.cs" />
+    <Compile Include="Controllers\AttributesHelper.cs" />
     <Compile Include="Controllers\CartHelper.cs" />
     <Compile Include="Controllers\Categories.cs" />
     <Compile Include="Controllers\ConfigurationHelper.cs" />
     <Compile Include="Controllers\OrderHelper.cs" />
     <Compile Include="Controllers\Products.cs" />
     <Compile Include="Controllers\UserHelper.cs" />
+    <Compile Include="Controllers\Validator.cs" />
+    <Compile Include="Controllers\Validators\AddressValidator.cs" />
+    <Compile Include="Controllers\Validators\CategoryValidator.cs" />
+    <Compile Include="Controllers\Validators\CustomerValidator.cs" />
+    <Compile Include="Controllers\Validators\ProductValidator.cs" />
+    <Compile Include="Views\Admin\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\AttributesEdit.aspx.cs">
       <DependentUpon>AttributesEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +206,27 @@
     </Compile>
     <Compile Include="Views\Admin\CategoriesEdit.aspx.designer.cs">
       <DependentUpon>CategoriesEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\Orders.aspx.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\Orders.aspx.designer.cs">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\OrdersEdit.aspx.cs">
+      <DependentUpon>OrdersEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\OrdersEdit.aspx.designer.cs">
+      <DependentUpon>OrdersEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\ProductsAdd.aspx.cs">
       <DependentUpon>ProductsAdd.aspx</DependentUpon>
@@ -330,6 +373,13 @@
     </Compile>
     <Compile Include="Views\Store\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Store\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Store\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Store\Store.Master.cs">
       <DependentUpon>Store.Master</DependentUpon>

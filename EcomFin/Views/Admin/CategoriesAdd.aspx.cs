@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EcomFin.Controllers.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +16,15 @@ namespace EcomFin.Views.Admin {
         protected void ButtonSave_Click(object sender, EventArgs e) {
             var category = new Category();
             category.Name = TextBoxName.Text;
-            db.Categories.Add(category);
-            db.SaveChanges();
-            Response.Redirect("/admin/categories");
+            var validator = new CategoryValidator();
+            var result = validator.Validate(category);
+            if (result.IsValid) {
+                db.Categories.Add(category);
+                db.SaveChanges();
+                Response.Redirect("/admin/categories");
+            } else {
+                LabelMessage.Text = result.Errors.First().ErrorMessage;
+            }
         }
     }
 }
