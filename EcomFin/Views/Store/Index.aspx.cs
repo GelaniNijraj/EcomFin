@@ -38,17 +38,18 @@ namespace EcomFin.Views.Store {
                 "category", 
                 Page.RouteData.Values["category"] == null ? "0" : Page.RouteData.Values["category"].ToString()
             );
-            RepeaterProducts.DataSource = ObjectDataSourceSearch;
-            /*
-            if (Page.RouteData.Values["category"] == null) {
-                RepeaterProducts.DataSource = ObjectDataSourceProducts;
-            } else {
-                RepeaterProducts.DataSource = ObjectDataSourceProductsCategory;
-            }*/
+            if (!Request.Url.AbsolutePath.Contains("search"))
+                ClearSessions();
             if (!IsPostBack) {
                 RepeaterProducts.DataBind();
                 Page.DataBind();
             }
+        }
+
+        private void ClearSessions() {
+            Session["search"] = null;
+            Session["minprice"] = null;
+            Session["maxprice"] = null;
         }
 
         public string GetImageURL(object o) {
@@ -64,6 +65,18 @@ namespace EcomFin.Views.Store {
             Debug.WriteLine("At least here");
             ch.AddProduct(Int32.Parse(e.CommandArgument.ToString()));
             Session["cart"] = ch.Cart;
+        }
+
+        protected void ObjectDataSourceSearch_Selected(object sender, ObjectDataSourceStatusEventArgs e) {
+            var data = (List<EcomFin.Product>)e.ReturnValue;
+
+            Debug.WriteLine("count is " + data.Count);
+            if (data.Count == 0)
+                LabelNoProducts.Text = "No products found";
+        }
+
+        public string ShortenName(string name, int len) {
+            return name.Length > len ? name.Substring(0, len) + "..." : name;
         }
     }
 }

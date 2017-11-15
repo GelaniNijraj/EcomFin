@@ -29,5 +29,9 @@ namespace EcomFin.Controllers {
                 return null;
             }
         }
+
+        public void Save() {
+            db.SaveChanges();
+        }
     }
 }

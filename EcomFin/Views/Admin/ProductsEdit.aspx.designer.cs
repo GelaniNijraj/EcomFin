@@ -13,6 +13,15 @@ namespace EcomFin.Views.Admin {
     public partial class ProductsEdit {
         
         /// <summary>
+        /// ButtonRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonRemove;
+        
+        /// <summary>
         /// TextBoxTitle control.
         /// </summary>
         /// <remarks>
@@ -76,15 +85,6 @@ namespace EcomFin.Views.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Images;
         
         /// <summary>
-        /// PanelImages control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelImages;
-        
-        /// <summary>
         /// ButtonSave control.
         /// </summary>
         /// <remarks>
@@ -92,5 +92,14 @@ namespace EcomFin.Views.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonSave;
+        
+        /// <summary>
+        /// LabelMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelMessage;
     }
 }

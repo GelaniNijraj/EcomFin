@@ -18,10 +18,33 @@
     <div class="row">
         <div class="column column-50">
             <label>Email <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox></label>
-            <asp:Button ID="ButtonUpdate" runat="server" Text="Update" />
+            <asp:Button ID="ButtonUpdate" runat="server" Text="Update" OnClick="ButtonUpdate_Click" />
+            <asp:Label ID="LabelUpdateMessage" runat="server"></asp:Label>
         </div>
         <div class="column column-50">
             <label>Password <asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox></label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <h3>Your Orders</h3>
+            <asp:GridView 
+                ID="GridViewOrders" 
+                runat="server"
+                DataSourceID="ObjectDataSourceOrders"
+                AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField HeaderText="ID" DataField="ID" />
+                    <asp:BoundField HeaderText="Placed On" DataField="PlacedOn" />
+                    <asp:BoundField HeaderText="Status" DataField="StatusCode" />
+                </Columns>
+            </asp:GridView>
+            <asp:ObjectDataSource
+                ID="ObjectDataSourceOrders"
+                SelectMethod="GetAll"
+                TypeName="EcomFin.Controllers.OrderHelper"
+                runat="server" />
         </div>
     </div>
 

@@ -13,48 +13,30 @@ namespace EcomFin.Views.Store {
     public partial class Product {
         
         /// <summary>
-        /// ImageSlideShow control.
+        /// TextBoxQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageSlideShow;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxQuantity;
         
         /// <summary>
-        /// ButtonPrevious control.
+        /// ButtonAddToCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPrevious;
+        protected global::System.Web.UI.WebControls.Button ButtonAddToCart;
         
         /// <summary>
-        /// LabelImageTitle control.
+        /// Image1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelImageTitle;
-        
-        /// <summary>
-        /// ButtonNext control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNext;
-        
-        /// <summary>
-        /// SlideShowExtenderProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.SlideShowExtender SlideShowExtenderProduct;
+        protected global::System.Web.UI.WebControls.Image Image1;
     }
 }

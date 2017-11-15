@@ -35,16 +35,14 @@
                             <div class="row">
                                 <div class="column"><asp:FileUpload runat="server" /></div>
                             </div>
-                            <div class="row">
-                                <div class="column"><asp:FileUpload runat="server" /></div>
-                            </div>
-                            <div class="row">
-                                <div class="column"><asp:FileUpload runat="server" /></div>
-                            </div>
                         </asp:Panel>
-
                     </div>
                 </div>
+                <asp:ObjectDataSource 
+                    ID="ObjectDataSourceAttributeNames" 
+                    TypeName="EcomFin.Controllers.AttributesHelper"
+                    SelectMethod="GetNames"
+                    runat="server" />
                 <asp:button ID="ButtonAdd" runat="server" text="ADD" OnClick="ButtonAdd_Click" />
                 <a href="/admin/products"><input type="button" value="DISCARD" /></a>
                 <asp:Label ID="LabelMessage" runat="server" ></asp:Label>

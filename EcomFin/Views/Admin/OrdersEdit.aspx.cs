@@ -47,8 +47,8 @@ namespace EcomFin.Views.Admin {
 
         protected void ButtonUpdate_Click(object sender, EventArgs e) {
             order.StatusCode = DropDownListStatus.Text;
-            Response.Redirect("/admin/orders");
             db.SaveChanges();
+            Response.Redirect("/admin/orders");
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Web.Routing;
 namespace EcomFin {
     public class CustomRoutes {
         public static RouteCollection RegisterAllRoutes(RouteCollection routes) {
+            routes.MapPageRoute("Install", "install", "~/Views/Install.aspx");
+
             routes.MapPageRoute("AdminLogin", "admin/login", "~/Views/Admin/Login.aspx");
             routes.MapPageRoute("AdminHome", "admin", "~/Views/Admin/Products.aspx");
 
@@ -17,7 +19,7 @@ namespace EcomFin {
             routes.MapPageRoute("AdminOrders", "admin/orders", "~/Views/Admin/Orders.aspx");
             routes.MapPageRoute("AdminOrdersView", "admin/orders/view/{id}", "~/Views/Admin/OrdersEdit.aspx");
 
-            routes.MapPageRoute("AdminAccount", "admin/account", "~/Views/Admin/Account.aspx");
+            routes.MapPageRoute("AdminAccount", "admin/account", "~/Views/Admin/AccountX.aspx");
 
             routes.MapPageRoute("AdminCategories", "admin/categories", "~/Views/Admin/Categories.aspx");
             routes.MapPageRoute("AdminCategoriesAdd", "admin/categories/new", "~/Views/Admin/CategoriesAdd.aspx");

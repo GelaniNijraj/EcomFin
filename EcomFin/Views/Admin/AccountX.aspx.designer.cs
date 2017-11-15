@@ -10,7 +10,7 @@
 namespace EcomFin.Views.Admin {
     
     
-    public partial class Account {
+    public partial class AccountX {
         
         /// <summary>
         /// TextBoxUsername control.

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using AjaxControlToolkit;
+using EcomFin.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,6 +22,7 @@ namespace EcomFin.Views.Store {
                 if (Page.RouteData.Values["id"] != null) {
                     var id = Int32.Parse(Page.RouteData.Values["id"].ToString());
                     product = db.Products.Where(r => r.Id == id).First();
+                    Image1.ImageUrl = product.ProductImages.Count > 1 ? "/Images/Products/" + product.ProductImages.First().URL : "";
                 } else {
                     Response.Redirect("/");
                 }
@@ -26,8 +31,14 @@ namespace EcomFin.Views.Store {
             }
         }
 
-        [System.Web.Services.WebMethod]
-        [System.Web.Script.Services.ScriptMethod]
+        [WebMethod]
+        [ScriptMethod]
+        public static Slide[] GetImages() {
+            Debug.WriteLine("get images");
+            return null;
+        }
+
+
         public static AjaxControlToolkit.Slide[] GetAllImages() {
             AjaxControlToolkit.Slide[] slides = new AjaxControlToolkit.Slide[sp.ProductImages.Count];
             Debug.WriteLine("Getting em images");
@@ -36,6 +47,19 @@ namespace EcomFin.Views.Store {
                 slides[i] = new AjaxControlToolkit.Slide("/Images/Products/" + sp.ProductImages.ToList()[i], sp.Name, sp.Name);
             }
             return slides;
+        }
+
+        protected void ButtonAddToCart_Click(object sender, EventArgs e) {
+            int qty = 1;
+            try {
+                qty = Int32.Parse(TextBoxQuantity.Text);
+            } catch {
+                qty = 1;
+            }
+
+            var ch = new CartHelper(Session["cart"]);
+            ch.AddProduct(product.Id, qty);
+            Session["cart"] = ch.Cart;
         }
     }
 }

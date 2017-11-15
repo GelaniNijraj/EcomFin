@@ -30,5 +30,9 @@ namespace EcomFin.Controllers {
         public List<Order> GetAll() {
             return db.Orders.ToList();
         }
+
+        public List<Order> GetAll(int id) {
+            return db.Orders.Where(r => r.Customer == id).ToList();
+        }
     }
 }

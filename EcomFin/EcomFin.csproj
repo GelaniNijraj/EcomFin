@@ -92,13 +92,14 @@
       <LastGenOutput>ModelMain.Context.cs</LastGenOutput>
       <DependentUpon>ModelMain.edmx</DependentUpon>
     </Content>
+    <Content Include="ModelMain.edmx.sql" />
     <Content Include="ModelMain.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelMain.edmx</DependentUpon>
       <LastGenOutput>ModelMain.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Views\Admin\Account.aspx" />
+    <Content Include="Views\Admin\AccountX.aspx" />
     <Content Include="Views\Admin\AttributesEdit.aspx" />
     <Content Include="Views\Admin\Categories.aspx" />
     <Content Include="Views\Admin\CategoriesAdd.aspx" />
@@ -108,6 +109,7 @@
     <Content Include="Views\Admin\OrdersEdit.aspx" />
     <Content Include="Views\Admin\ProductsAdd.aspx" />
     <Content Include="Views\Admin\ProductsEdit.aspx" />
+    <Content Include="Views\Install.aspx" />
     <Content Include="Views\Masters\Admin.Master" />
     <Content Include="Views\Masters\Dashboard.master" />
     <EntityDeploy Include="ModelMain.edmx">
@@ -123,6 +125,7 @@
     <Content Include="Views\Store\Register.aspx" />
     <Content Include="Views\Store\Settings.aspx" />
     <Content Include="Views\Store\Store.Master" />
+    <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -151,7 +154,6 @@
     </Compile>
     <Compile Include="Admin.cs">
       <DependentUpon>ModelMain.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AttributeName.cs">
       <DependentUpon>ModelMain.tt</DependentUpon>
@@ -169,15 +171,16 @@
     <Compile Include="Controllers\UserHelper.cs" />
     <Compile Include="Controllers\Validator.cs" />
     <Compile Include="Controllers\Validators\AddressValidator.cs" />
+    <Compile Include="Controllers\Validators\AdminValidator.cs" />
     <Compile Include="Controllers\Validators\CategoryValidator.cs" />
     <Compile Include="Controllers\Validators\CustomerValidator.cs" />
     <Compile Include="Controllers\Validators\ProductValidator.cs" />
-    <Compile Include="Views\Admin\Account.aspx.cs">
-      <DependentUpon>Account.aspx</DependentUpon>
+    <Compile Include="Views\Admin\AccountX.aspx.cs">
+      <DependentUpon>AccountX.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Admin\Account.aspx.designer.cs">
-      <DependentUpon>Account.aspx</DependentUpon>
+    <Compile Include="Views\Admin\AccountX.aspx.designer.cs">
+      <DependentUpon>AccountX.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\AttributesEdit.aspx.cs">
       <DependentUpon>AttributesEdit.aspx</DependentUpon>
@@ -241,6 +244,13 @@
     </Compile>
     <Compile Include="Views\Admin\ProductsEdit.aspx.designer.cs">
       <DependentUpon>ProductsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Install.aspx.cs">
+      <DependentUpon>Install.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Install.aspx.designer.cs">
+      <DependentUpon>Install.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Masters\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>

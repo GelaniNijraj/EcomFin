@@ -30,8 +30,13 @@ namespace EcomFin.Views.Store {
             uh = new UserHelper(Session);
             ch = new CartHelper(Session["cart"]);
             TextBoxSearch.Attributes["value"] = Session["search"] == null ? "" : Session["search"].ToString();
-            SliderPrice.Minimum = db.Products.Min(p => (int)p.Price);
-            SliderPrice.Maximum = db.Products.Max(p => (int)p.Price);
+            try {
+                SliderPrice.Minimum = db.Products.Min(p => (int)p.Price);
+                SliderPrice.Maximum = db.Products.Max(p => (int)p.Price);
+            } catch {
+                SliderPrice.Minimum = 0;
+                SliderPrice.Maximum = 100;
+            }
             TextBoxPrice1.Attributes["value"] = Session["minprice"] == null ? SliderPrice.Minimum + "" : Session["minprice"].ToString();
             TextBoxPrice2.Attributes["value"] = Session["maxprice"] == null ? SliderPrice.Maximum + "" : Session["maxprice"].ToString();
         }
@@ -42,6 +47,7 @@ namespace EcomFin.Views.Store {
         }
 
         protected void ButtonApplyPrice_Click(object sender, EventArgs e) {
+            Debug.WriteLine("Applying prices");
             Session["minprice"] = TextBoxPrice1.Text;
             Session["maxprice"] = TextBoxPrice2.Text;
             Response.Redirect("/search");

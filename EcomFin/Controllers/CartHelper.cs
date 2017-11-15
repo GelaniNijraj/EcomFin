@@ -56,5 +56,13 @@ namespace EcomFin.Controllers {
                 Cart.Content[p] = 1;
             Debug.WriteLine("Adding " + p + " " + Cart.Content[p]);
         }
+
+        public void AddProduct(int p, int qty) {
+            if (Cart.Content.ContainsKey(p))
+                Cart.Content[p] += qty;
+            else
+                Cart.Content[p] = 1;
+            Debug.WriteLine("Adding " + p + " " + Cart.Content[p]);
+        }
     }
 }

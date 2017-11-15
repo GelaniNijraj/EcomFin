@@ -18,8 +18,11 @@ namespace EcomFin.Views.Admin {
         }
 
         protected void Page_Load(object sender, EventArgs e) {
-            //            Page.DataBind();
-            var attrs = (List<Panel>)(ViewState["attrs"]);
+        }
+
+        protected void DropDownNameUpdated(object o, EventArgs e) {
+            var d = (DropDownList)o;
+            Debug.WriteLine(d.ID);
         }
 
         protected void ButtonAddImage_Click(object sender, EventArgs e) {

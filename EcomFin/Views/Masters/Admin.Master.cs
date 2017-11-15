@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace EcomFin {
-    public partial class Admin : System.Web.UI.MasterPage {
+    public partial class MasterAdmin : System.Web.UI.MasterPage {
         protected void Page_Load(object sender, EventArgs e) {
 
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/Dashboard.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="EcomFin.Views.Admin.Account" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Masters/Dashboard.master" AutoEventWireup="true" CodeBehind="AccountX.aspx.cs" Inherits="EcomFin.Views.Admin.AccountX" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <title>Account</title>
 </asp:Content>
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="column column-50">
                 <label>Username<asp:TextBox ID="TextBoxUsername" runat="server"></asp:TextBox></label>
-                <label>Password<asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox></label>
+                <label>Password<asp:TextBox ID="TextBoxPassword" runat="server" TextMode="Password"></asp:TextBox></label>
                 <asp:Button ID="ButtonUpdate" runat="server" Text="Update" OnClick="ButtonUpdate_Click" />
                 <asp:Label ID="LabelMessage" runat="server"></asp:Label>
             </div>

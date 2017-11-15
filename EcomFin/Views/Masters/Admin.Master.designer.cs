@@ -10,7 +10,7 @@
 namespace EcomFin {
     
     
-    public partial class Admin {
+    public partial class MasterAdmin {
         
         /// <summary>
         /// HeadContent control.

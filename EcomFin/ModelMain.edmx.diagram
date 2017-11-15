@@ -6,11 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="05af2da13dc34b6fa66eba298506394c" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="ecomModel.Address" Width="1.5" PointX="3" PointY="8.125" />
-        <EntityTypeShape EntityType="ecomModel.Admin" Width="1.5" PointX="7.75" PointY="10" />
+        <EntityTypeShape EntityType="ecomModel.Admin" Width="1.5" PointX="2.75" PointY="6" />
         <EntityTypeShape EntityType="ecomModel.AttributeName" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="ecomModel.AttributeValue" Width="1.5" PointX="3" PointY="3.5" />
         <EntityTypeShape EntityType="ecomModel.Category" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="ecomModel.Configuration" Width="1.5" PointX="9.75" PointY="2" />
+        <EntityTypeShape EntityType="ecomModel.Configuration" Width="1.5" PointX="0.625" PointY="6" />
         <EntityTypeShape EntityType="ecomModel.Customer" Width="1.5" PointX="0.75" PointY="8.375" />
         <EntityTypeShape EntityType="ecomModel.OrderItem" Width="1.5" PointX="7.5" PointY="3.5" />
         <EntityTypeShape EntityType="ecomModel.Order" Width="1.5" PointX="5.25" PointY="8.25" />

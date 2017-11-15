@@ -13,6 +13,15 @@ namespace EcomFin.Views.Store {
     public partial class Index {
         
         /// <summary>
+        /// LabelNoProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelNoProducts;
+        
+        /// <summary>
         /// RepeaterProducts control.
         /// </summary>
         /// <remarks>
