@@ -26,11 +26,8 @@
             <div class="row">
                 <div class="column column-80">
                     <label>Image :</label>
-                    <ajaxToolkit:SlideShowExtender
-                        TargetControlID="Image1"
-                        runat="server"
-                        SlideShowServiceMethod="GetImages" />
-                    <asp:Image ID="Image1" runat="server" />
+                    <% Image1.ImageUrl = GetImageURL(); Image1.DataBind(); %>
+                    <asp:Image ID="Image1" runat="server" Width="440px"/>
                 </div>
             </div>
             <label>Description :</label>
